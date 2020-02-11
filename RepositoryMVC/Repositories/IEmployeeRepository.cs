@@ -7,7 +7,7 @@ using RepositoryMVC.Models;
 
 namespace RepositoryMVC.Repositories
 {
-    public interface IEmployeeRepository: IGenericRepository<Employee>
+    public interface IEmployeeRepository: IRepository<Employee>
     {
         IEnumerable<Employee> GetByGender(string gender);
         IEnumerable<Employee> GetByDepartment(string department);

@@ -7,18 +7,18 @@ using RepositoryMVC.Models;
 
 namespace RepositoryMVC.Repositories
 {
-    public class GenericRepository<T>: IGenericRepository<T> where T : class
+    public class Repository<T>: IRepository<T>, IDisposable where T : class
     {
         protected readonly EmployeeDBContext Context;
         protected readonly DbSet<T> Table;
 
-        public GenericRepository()
+        public Repository()
         {
             Context = new EmployeeDBContext();
             Table = Context.Set<T>();
         }
 
-        public GenericRepository(EmployeeDBContext context)
+        public Repository(EmployeeDBContext context)
         {
             Context = context;
             Table = Context.Set<T>();
@@ -56,6 +56,20 @@ namespace RepositoryMVC.Repositories
         public void Save()
         {
             Context.SaveChanges();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Context?.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

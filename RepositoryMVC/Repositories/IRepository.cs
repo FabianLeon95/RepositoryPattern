@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryMVC.Repositories
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
         T GetById(object id);

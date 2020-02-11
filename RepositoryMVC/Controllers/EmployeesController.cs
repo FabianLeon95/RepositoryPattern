@@ -48,7 +48,12 @@ namespace RepositoryMVC.Controllers
         public ActionResult Details(int id)
         {
             var employee = _repository.GetById(id);
-            return View(employee);
+            if (employee != null)
+            {
+                return View(employee);
+            }
+
+            return HttpNotFound();
         }
 
         public ActionResult Create()
@@ -68,7 +73,12 @@ namespace RepositoryMVC.Controllers
         public ActionResult Edit(int id)
         {
             var employee = _repository.GetById(id);
-            return View(employee);
+            if (employee != null)
+            {
+                return View(employee);
+            }
+
+            return HttpNotFound();
         }
 
         [HttpPost]
@@ -83,7 +93,12 @@ namespace RepositoryMVC.Controllers
         public ActionResult Delete(int id)
         {
             var employee = _repository.GetById(id);
-            return View(employee);
+            if (employee != null)
+            {
+                return View(employee);
+            }
+
+            return HttpNotFound();
         }
 
         [HttpPost]
